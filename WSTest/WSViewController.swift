@@ -10,8 +10,9 @@ import Starscream
 
 class WSViewController: UIViewController {
     
-    var socket: WebSocket!
-    let wsUrl = "wss://8121-115-31-191-21.ngrok.io"
+//    var socket: WebSocket!
+//    let wsUrl = "wss://8121-115-31-191-21.ngrok.io"
+    var socket = WebSocket(url: URL(string: "wss://8121-115-31-191-21.ngrok.io")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +20,19 @@ class WSViewController: UIViewController {
         connectWS()
     }
     
+    deinit {
+      socket.disconnect(forceTimeout: 0)
+      socket.delegate = nil
+    }
+    
     @IBAction func backAction(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
     func connectWS(){
-        var request = URLRequest(url: URL(string: self.wsUrl)!)
-        request.timeoutInterval = 5
-        self.socket = WebSocket(request: request)
+//        var request = URLRequest(url: URL(string: self.wsUrl)!)
+//        request.timeoutInterval = 5
+//        self.socket = WebSocket(request: request)
         self.socket.delegate = self
         self.socket.connect()
     }
@@ -43,6 +49,23 @@ extension WSViewController: WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("websocketDidReceiveMessage: \(text)")
+        
+        // 1
+//        guard let data = text.data(using: .utf16),
+//          let jsonData = try? JSONSerialization.jsonObject(with: data),
+//          let jsonDict = jsonData as? [String: Any],
+//          let messageType = jsonDict["type"] as? String else {
+//            return
+//        }
+
+        // 2
+//        if messageType == "message",
+//           let messageData = jsonDict["data"] as? [String: Any],
+//           let messageAuthor = messageData["author"] as? String,
+//           let messageText = messageData["text"] as? String {
+//            
+//            messageReceived(messageText, senderName: messageAuthor)
+//        }
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
