@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		AA4CA8602756175A00E469EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4CA85F2756175A00E469EF /* Assets.xcassets */; };
 		AA4CA8632756175A00E469EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4CA8612756175A00E469EF /* LaunchScreen.storyboard */; };
 		AA4CA86B27561E2200E469EF /* WSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4CA86A27561E2200E469EF /* WSViewController.swift */; };
+		AA62BF6F27591FD4004D7D51 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62BF6E27591FD4004D7D51 /* WebSocketManager.swift */; };
 		FA98283FACFD312F0E69A01E /* Pods_WSTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9351781B94AACCB6ECD71A47 /* Pods_WSTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		AA4CA8622756175A00E469EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA4CA8642756175A00E469EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA4CA86A27561E2200E469EF /* WSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSViewController.swift; sourceTree = "<group>"; };
+		AA62BF6E27591FD4004D7D51 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
 		F5B734C7FF16F56A5B95DA9A /* Pods-WSTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WSTest.debug.xcconfig"; path = "Target Support Files/Pods-WSTest/Pods-WSTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 				AA4CA8582756175900E469EF /* SceneDelegate.swift */,
 				AA4CA85A2756175900E469EF /* ViewController.swift */,
 				AA4CA86A27561E2200E469EF /* WSViewController.swift */,
+				AA62BF6E27591FD4004D7D51 /* WebSocketManager.swift */,
 				AA4CA85C2756175900E469EF /* Main.storyboard */,
 				AA4CA85F2756175A00E469EF /* Assets.xcassets */,
 				AA4CA8612756175A00E469EF /* LaunchScreen.storyboard */,
@@ -91,7 +94,6 @@
 				F5B734C7FF16F56A5B95DA9A /* Pods-WSTest.debug.xcconfig */,
 				960E45A4F821829795B3BAE7 /* Pods-WSTest.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -210,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA4CA85B2756175900E469EF /* ViewController.swift in Sources */,
+				AA62BF6F27591FD4004D7D51 /* WebSocketManager.swift in Sources */,
 				AA4CA8572756175900E469EF /* AppDelegate.swift in Sources */,
 				AA4CA86B27561E2200E469EF /* WSViewController.swift in Sources */,
 				AA4CA8592756175900E469EF /* SceneDelegate.swift in Sources */,
