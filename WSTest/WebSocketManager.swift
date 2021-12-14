@@ -6,35 +6,37 @@
 //
 
 import Starscream
+import RxSwift
 
 class WebSocketManager {
+    
     static let shared = WebSocketManager()
     
-    //    var socket: WebSocket!
-    //    let wsUrl = "wss://8121-115-31-191-21.ngrok.io"
-    var socket = WebSocket(url: URL(string: "wss://0cdf-115-31-191-21.ngrok.io")!)
+    var socket = WebSocket(url: URL(string: "wss://message-global01.utrade.co.th/")!)
     
-    init() {
-        connectWS()
-    }
+    public private(set) var onReceiveConnect = PublishSubject<Bool>()
+    public private(set) var onReceivePrice = PublishSubject<String>()
     
-    deinit {
-        socket.disconnect(forceTimeout: 0)
-        socket.delegate = nil
-    }
-    
-    func connectWS(){
-        //        var request = URLRequest(url: URL(string: self.wsUrl)!)
-        //        request.timeoutInterval = 5
-        //        self.socket = WebSocket(request: request)
+    func socketConnect(){
         self.socket.delegate = self
         self.socket.connect()
+    }
+    
+    func socketDisconnect(){
+        socket.disconnect(forceTimeout: 0)
+    }
+    
+    func socketWrite(data: String) {
+        self.socket.write(string: data) {
+            print("Send Key \(data) Success")
+        }
     }
 }
 
 extension WebSocketManager: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         print("websocketDidConnect: \(socket)")
+        self.onReceiveConnect.onNext(true)
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
@@ -44,6 +46,7 @@ extension WebSocketManager: WebSocketDelegate {
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("websocketDidReceiveMessage: \(text)")
         
+        self.onReceivePrice.onNext(text)
         // 1
         //        guard let data = text.data(using: .utf16),
         //          let jsonData = try? JSONSerialization.jsonObject(with: data),
@@ -65,35 +68,4 @@ extension WebSocketManager: WebSocketDelegate {
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("websocketDidReceiveData: \(data)")
     }
-    
-    //    func didReceive(event: WebSocketEvent, client: WebSocket) {
-    //        switch event {
-    //        case .connected(let headers):
-    //            isConnected = true
-    //            checkConnectWS()
-    //            print("websocket is connected: \(headers)")
-    //        case .disconnected(let reason, let code):
-    //            isConnected = false
-    //            checkConnectWS()
-    //            print("websocket is disconnected: \(reason) with code: \(code)")
-    //        case .text(let string):
-    //            print("Received text: \(string)")
-    //            self.appendMessage(message: string)
-    //        case .binary(let data):
-    //            print("Received data: \(data.count)")
-    //        case .ping(_):
-    //            break
-    //        case .pong(_):
-    //            break
-    //        case .viabilityChanged(_):
-    //            break
-    //        case .reconnectSuggested(_):
-    //            break
-    //        case .cancelled:
-    //            isConnected = false
-    //        case .error(_):
-    //            isConnected = false
-    //            handleError(error)
-    //        }
-    //    }
 }
